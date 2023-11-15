@@ -19,7 +19,7 @@ int main(void)
 		if (input == NULL)
 		{
 			break;
-			printf("\n");
+			write(STDOUT_FILENO, "\n", 1);
 		}
 		args = tokenize(input);
 		if (args != NULL && args[0] != NULL)
@@ -32,7 +32,8 @@ int main(void)
 			{
 				while (*env != NULL)
 				{
-					printf("%s\n", *env);
+					write(STDOUT_FILENO, *env, strlen(*env));
+					write(STDOUT_FILENO, "\n", 1);
 					env++;
 				}
 			}
