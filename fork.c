@@ -21,6 +21,7 @@ void teborne(char **args)
 	else if (pid == 0)
 	{
 		executecommand(args, env);
+		exit(0);
 	}
 	else
 	{

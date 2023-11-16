@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #define MAX_ARGS 100
 #include <sys/stat.h>
+char **append(char **args, char *token);
 void teborne(char **args);
 void exiting(char **args, char *input);
 void envir(char **args);

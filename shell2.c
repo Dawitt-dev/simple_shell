@@ -27,6 +27,8 @@ int main(void)
 			if (strcmp(args[0], "exit") == 0)
 			{
 				exiting(args, input);
+				free(args);
+				free(input);
 			}
 			else if (strcmp(args[0], "env") == 0)
 			{
@@ -36,12 +38,13 @@ int main(void)
 					write(STDOUT_FILENO, "\n", 1);
 					env++;
 				}
+				free(args);
 			}
 			else
 			{
 				teborne(args);
 			}
-			free(args);
+
 		}
 		free(input);
 	}
