@@ -1,62 +1,60 @@
 #include "shell.h"
 /**
- * tokenize - tokenizes
- *@input: argument
+ * tokenize - tokenizes input
+ *@str: argument
+ *@delim: delimiter
  *
- * Return: args
+ * Return: number of words
  */
-char **tokenize(char *input)
+size_t tokenizer(char *str, char *delim)
 {
-	char *token;
-	char **args = NULL;
-	int i = 0;
+	size_t words_count = 0;
 
-	token = strtok(input, " ");
-
-	while (token != NULL && i < MAX_ARGS)
+	if (strtok(str, delim))
 	{
-		args = append(args, token);
-		token = strtok(NULL, " ");
-		i++;
-
+		++words_count;
 	}
-	args[i] = NULL;
-	return (args);
+	while (strtok(NULL, delim))
+	{
+		++words_count;
+	}
+	return (words_count);
 }
 /**
- * append - appends tokens
- *@args: arrgument 1
- *@token: token
+ * word_list(char *str, char *delim)
+ *@str: string
+ *delim: delimiter
  *
- * Return: array
+ * Return: array of ptr
  */
-char **append(char **args, char *token)
+char **word_list(char *str, char *delim)
 {
-	int j, i = 0;
-	char **newArgs;
+	char **arr = NULL;
+	size_t i = 0; 
+	size_t j = 0, l;
+	size_t k = strlen(str);
+	char prev_char = '\0';
 
-	while (args != NULL && args[i] != NULL)
+	if ((j = tokenizer(str, delim)) > 0)
 	{
-		i++;
+		arr = malloc(sizeof(char *) * (j + 1));
+
+		if (arr == NULL)
+		{
+			exit(EXIT_FAILURE);
+		}
+
+		for (l = 0; l < k; ++l )
+		{
+			if (str[l] != '\0' && prev_char == '\0')
+			{
+				arr[i] = str + l;
+				++i;
+			}
+			prev_char = str[l];
+		}
+		arr[i] = NULL;
 	}
-	newArgs = malloc((i + 2) * sizeof(*newArgs));
-	if (newArgs == NULL) 
-	{
-		perror("malloc");
-		exit(0);
-	}
-	for (j = 0; j < i; j++) 
-	{
-        	newArgs[j] = args[j];
-    	}
-	newArgs[i] = malloc(strlen(token) + 1);
-	if (newArgs[i] == NULL)
-	{
-		perror("malloc");
-		exit(0);
-	}
-	strcpy(newArgs[i], token);
-	newArgs[i + 1] = NULL;
-	free(args);
-	return newArgs;
+	return (arr);
 }
+

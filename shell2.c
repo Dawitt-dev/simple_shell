@@ -7,8 +7,9 @@
 int main(void)
 {
 
-	char **args, *input, **env = environ;
-
+	char **args, *delim, *input, **env = environ;
+	
+	delim = " "; 
 	input = NULL;
 
 	while (1)
@@ -21,14 +22,12 @@ int main(void)
 			break;
 			write(STDOUT_FILENO, "\n", 1);
 		}
-		args = tokenize(input);
+		args = word_list(input, delim);
 		if (args != NULL && args[0] != NULL)
 		{
 			if (strcmp(args[0], "exit") == 0)
 			{
 				exiting(args, input);
-				free(args);
-				free(input);
 			}
 			else if (strcmp(args[0], "env") == 0)
 			{
