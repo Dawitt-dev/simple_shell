@@ -1,1 +1,1 @@
--m Simple Shell is a basic command-line interpreter written in C. It allows users to execute commands, providing a minimalistic interface for interacting with the underlying operating system.
+This Simple Shell program is a basic command-line interpreter written in C. It allows users to execute commands, providing a minimalistic interface for interacting with the underlying operating system.
