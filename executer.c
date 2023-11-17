@@ -20,6 +20,7 @@ void executecommand(char **args, char **env)
 	else
 	{
 		perror(args[0]);
+		exit(0);
 	}
 	free(path);
 
