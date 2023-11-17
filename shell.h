@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #define MAX_ARGS 100
 #include <sys/stat.h>
-size_t tokenizer(char *str, char *delim);
-char **word_list(char *str, char *delim);
+size_t tokenizer(char *input, char *delim);
+char **word_list(char *input, char *delim);
 char **append(char **args, char *token);
 void teborne(char **args);
 void exiting(char **args, char *input);

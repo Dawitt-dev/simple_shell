@@ -6,11 +6,11 @@
  *
  * Return: number of words
  */
-size_t tokenizer(char *str, char *delim)
+size_t tokenizer(char *input, char *delim)
 {
 	size_t words_count = 0;
 
-	if (strtok(str, delim))
+	if (strtok(input, delim))
 	{
 		++words_count;
 	}
@@ -22,39 +22,39 @@ size_t tokenizer(char *str, char *delim)
 }
 /**
  * word_list(char *str, char *delim)
- *@str: string
- *delim: delimiter
+ *@input: string
+ *@delim: delimiter
  *
  * Return: array of ptr
  */
-char **word_list(char *str, char *delim)
+char **word_list(char *input, char *delim)
 {
-	char **arr = NULL;
-	size_t i = 0; 
-	size_t j = 0, l;
-	size_t k = strlen(str);
+	char **args = NULL;
+	size_t args_i = 0; 
+	size_t args_s = 0, input_i;
+	size_t input_s = strlen(input);
 	char prev_char = '\0';
 
-	if ((j = tokenizer(str, delim)) > 0)
+	if ((args_s = tokenizer(input, delim)) > 0)
 	{
-		arr = malloc(sizeof(char *) * (j + 1));
+		args = malloc(sizeof(char *) * (args_s + 1));
 
-		if (arr == NULL)
+		if (args == NULL)
 		{
 			exit(EXIT_FAILURE);
 		}
 
-		for (l = 0; l < k; ++l )
+		for (input_i = 0; input_i < input_s; ++input_i)
 		{
-			if (str[l] != '\0' && prev_char == '\0')
+			if (input[input_i] != '\0' && prev_char == '\0')
 			{
-				arr[i] = str + l;
-				++i;
+				args[args_i] = input + input_i;
+				++args_i;
 			}
-			prev_char = str[l];
+			prev_char = input[input_i];
 		}
-		arr[i] = NULL;
+		args[args_i] = NULL;
 	}
-	return (arr);
+	return (args);
 }
 
