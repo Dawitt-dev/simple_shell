@@ -6,12 +6,10 @@
  */
 int main(void)
 {
-
 	char **args, *delim, *input, **env = environ;
-	
-	delim = " "; 
-	input = NULL;
 
+	delim = " ";
+	input = NULL;
 	while (1)
 	{
 		printprompt();

@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
- * tokenize - tokenizes input
- *@str: argument
+ * tokenizer - tokenizes input
+ *@input: argument
  *@delim: delimiter
  *
  * Return: number of words
@@ -21,7 +21,7 @@ size_t tokenizer(char *input, char *delim)
 	return (words_count);
 }
 /**
- * word_list(char *str, char *delim)
+ * word_list - lists
  *@input: string
  *@delim: delimiter
  *
@@ -30,12 +30,13 @@ size_t tokenizer(char *input, char *delim)
 char **word_list(char *input, char *delim)
 {
 	char **args = NULL;
-	size_t args_i = 0; 
+	size_t args_i = 0;
 	size_t args_s = 0, input_i;
 	size_t input_s = strlen(input);
 	char prev_char = '\0';
 
-	if ((args_s = tokenizer(input, delim)) > 0)
+	args_s = tokenizer(input, delim);
+	if (args_s > 0)
 	{
 		args = malloc(sizeof(char *) * (args_s + 1));
 

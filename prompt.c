@@ -8,7 +8,7 @@ void printprompt(void)
 {
 	if (isatty(0))
 	{
-		write(STDOUT_FILENO,"#cisfun$ ", 9);
+		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		fflush(stdout);
 	}
 }
